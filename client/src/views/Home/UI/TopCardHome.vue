@@ -89,7 +89,6 @@ export default {
 
     img {
       margin: 0.5rem auto 2rem;
-      // padding: 0.75rem;
       border-radius: 4px;
       overflow: hidden;
     }

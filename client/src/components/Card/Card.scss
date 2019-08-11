@@ -3,12 +3,16 @@
   display: inline-block;
   min-width: 220px;
   width: 30%;
-  height: 16rem;
+  height: auto;
   margin: 0.5rem 1rem;
   padding: 1rem 2rem;
   box-shadow: 0 7px 8px 3px rgba(0, 0, 0, 0.15);
   border-radius: 4px;
   text-align: left;
+  transition: all 0.4s ease-in;
+  &:hover {
+    transform: scale(1.04);
+  }
   @include respond(tab-land) {
     width: 42%;
 
