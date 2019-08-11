@@ -1,0 +1,32 @@
+{
+  "name": "vue-node-saf",
+  "version": "1.0.0",
+  "description": "full stack node - vue",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server",
+    "client": "npm run serve --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/penkong/vue-node-saf.git"
+  },
+  "author": "nazemi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/penkong/vue-node-saf/issues"
+  },
+  "homepage": "https://github.com/penkong/vue-node-saf#readme",
+  "dependencies": {
+    "concurrently": "^4.1.1",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1",
+    "node-fetch": "^2.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
