@@ -8,8 +8,7 @@
     "npm": "6.7.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
+    "start": "node index",
     "server": "nodemon server",
     "client": "npm run serve --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
