@@ -1,28 +1,30 @@
 /* eslint-disable */
 <template>
   <div class="home">
-    <BigCard style="margin-top: 5.4rem;" />
+    <TopCardHome style="margin-top: 3rem;" />
     <div class="card-container">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card>
+        <img src alt />
+      </Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
+      <Card></Card>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
+import TopCardHome from "./UI/TopCardHome";
 import Card from "../../components/Card/Card";
-import BigCard from "../../components/BigCard/BigCard";
 
 export default {
   name: "Home",
   components: {
-    Card,
-    BigCard
+    TopCardHome,
+    Card
   }
 };
 </script>

@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const dotenv = require('dotenv');
-
+const bodyParser = require('body-parser');
 // Load env
 dotenv.config({ path: './config.env' });
 
@@ -11,6 +11,8 @@ dotenv.config({ path: './config.env' });
 // ----------------------- load app -----------------------
 const app = express();
 
+// ----------------------- MIDDLEWARE ---------------------
+app.use(bodyParser.json());
 // ------------------------ Dev ---------------------------------
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
@@ -19,7 +21,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // -------------------------- ROUTES ------------------------------
 
-
+// require('./routes/authRoutes')(app); 
 
 
 
@@ -29,7 +31,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/public/'));
 
   // Handle SPA
-  app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
+  const path = require('path');
+  app.get(/.*/, (req, res) => res.sendFile(path.resolve(__dirname, 'public', 'index.html')));
 }
 
 
