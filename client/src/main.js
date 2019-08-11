@@ -1,13 +1,25 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
 import store from './store'
-import './registerServiceWorker'
+import firebase from 'firebase'
+// import Axios from 'axios'
+// Vue.prototype.$http = Axios;
+// const token = localStorage.getItem('token')
+// if (token) {
+//   Vue.prototype.$http.defaults.headers.common['Authorization'] = token
+// }
+Vue.config.productionTip = false;
 
-Vue.config.productionTip = false
-
-new Vue({
-  router,
-  store,
-  render: h => h(App)
-}).$mount('#app')
+let app = null
+firebase.auth().onAuthStateChanged(() => {
+  /* eslint-disable no-new */
+  // init app if not already created
+  if (!app) {
+    app = new Vue({
+      router,
+      store,
+      render: h => h(App)
+    }).$mount("#app");
+  }
+})

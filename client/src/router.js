@@ -1,25 +1,76 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from "vue";
+import Router from "vue-router";
+import firebase from 'firebase/app';
+import Home from "./views/Home/Home.vue";
 
-Vue.use(Router)
+Vue.use(Router);
 
-export default new Router({
-  mode: 'history',
+const router =  new Router({
+  mode: "history",
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/',
-      name: 'home',
+      path: "/",
+      name: "Home",
       component: Home
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
+      path: "/aboutforCustomer",
+      name: "About",
       // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      meta: {
+        requireAuth: true
+      },
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/About/About.vue"),
+    },
+    {
+      path: "/login",
+      name: "Login",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Login/Login.vue")
+    },
+    {
+      path: "/signup",
+      name: "Signup",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/Signup/Signup.vue")
+    },
+    {
+      path: "/userland",
+      name: "UserLanding",
+      meta: {
+        requireAuth: true
+      },
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/UserLanding/UserLanding.vue"),
+    },
+    {
+      path: "/contactus",
+      name: "ContactUs",
+      component: () =>
+        import(/* webpackChunkName: "about" */ "./views/ContactUs/ContactUs.vue")
     }
   ]
+});
+
+// going to
+// come from
+// step next
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(rec => rec.meta.requireAuth)) {
+    // check auth state of user
+    let user = firebase.auth().currentUser
+    if (user) {
+      next()
+    } else {
+      // redirect
+      next({ name: 'Home' })
+    }
+  } else {
+    // else it had not router guard.
+    next()
+  }
 })
+
+export default router;

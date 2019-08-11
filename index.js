@@ -5,17 +5,25 @@ const dotenv = require('dotenv');
 // Load env
 dotenv.config({ path: './config.env' });
 
+// ----------------------- DB ----------------------------
+
+
+// ----------------------- load app -----------------------
 const app = express();
 
-// Dev logging
+// ------------------------ Dev ---------------------------------
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
-// Profile routes
-app.use('/api/v1/profile', require('./routes/profile'));
 
-// Handle production
+// -------------------------- ROUTES ------------------------------
+
+
+
+
+
+// --------------------- Handle production ---------------------------
 if (process.env.NODE_ENV === 'production') {
   // Set static folder
   app.use(express.static(__dirname + '/public/'));
@@ -24,8 +32,12 @@ if (process.env.NODE_ENV === 'production') {
   app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
-const port = process.env.PORT || 8000;
 
+
+
+// ----------------------- LISTENER -------------------------------------
+
+const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`);
 });
