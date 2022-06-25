@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "firebase": "^6.3.5",
     "morgan": "^1.9.1",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.7",
     "passport": "^0.4.0",
     "qs": "^6.7.0"
   },
